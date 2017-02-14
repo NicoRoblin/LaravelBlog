@@ -132,6 +132,6 @@ class ArticleController extends Controller
     {
         Article::where('id', $id)->delete();
 
-        redirect()->route('articles.index');
+        return redirect()->route('articles.index');
     }
 }

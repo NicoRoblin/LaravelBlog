@@ -11,7 +11,7 @@
 |
 */
 
-use App\Article;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,5 +28,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('articles', 'ArticleController');
+
+Route::resource('comments', 'CommentController',  ['except' => ['store']]);
+
+Route::post('/store/{id}', 'CommentController@store')->name('comments.store');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
