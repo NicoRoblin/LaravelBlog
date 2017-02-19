@@ -61,17 +61,17 @@ class ArticleController extends Controller
             "user_id" => Auth::user()->id
         ]);
 
-        $id = '' . $article->id . '';
+        //$id = '' . $article->id . '';
 
-        $ext = $request->file('fileToUpload')->extension();
+        //$ext = $request->file('fileToUpload')->extension();
 
-        $filename = $id.".".$ext;
+        //$filename = $id.".".$ext;
 
-        $test = Storage::disk('uploads')->put($id, $request->file('fileToUpload'));
+        //$test = Storage::disk('uploads')->put($id, $request->file('fileToUpload'));
 
 
 
-        var_dump($test);
+        //var_dump($test);
 
 
         // Article::where('content', $request->get('content'))->update(['img_path' => $test]);
