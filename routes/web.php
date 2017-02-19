@@ -40,3 +40,5 @@ Route::post('/store/{id}', 'LikeController@store')->name('likes.store');
 Route::resource('messages', 'MessageController');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
+
+
