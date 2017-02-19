@@ -23,6 +23,7 @@
             </form>
             <a class="btn btn-default" href="{{route('articles.edit', [$articles->id])}}">Modifier</a>
             <hr>
+        @endif
             <form class="form-horizontal" role="form" method="POST"
                   action="{{ route('comments.add', [$articles->id]) }}">
                 {{ csrf_field() }}
@@ -46,7 +47,7 @@
                 </div>
             </form>
 
-        @endif
+
         <hr>
         <div style="width: 100% ;font-size: 0.8em; padding-left: 5%;">
             @forelse($articles->comments as $comment)
