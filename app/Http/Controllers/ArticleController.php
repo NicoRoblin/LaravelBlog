@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -44,22 +45,38 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,
-        [
-            'title'=>'required',
-            'content'=>'required'
-        ],
-        [
-            'title.required'=>'Un titre est requis',
-            'content.required'=>'Un contenu est requis'
-        ]);
+            [
+                'title' => 'required',
+                'content' => 'required'
+            ],
+            [
+                'title.required' => 'Un titre est requis',
+                'content.required' => 'Un contenu est requis'
+            ]);
 
-        Article::create([
+
+        $article = Article::create([
             "title" => $request->title,
             "content" => $request->get('content'),
             "user_id" => Auth::user()->id
         ]);
 
-        return redirect()->route('articles.index');
+        $id = '' . $article->id . '';
+
+        $ext = $request->file('fileToUpload')->extension();
+
+        $filename = $id.".".$ext;
+
+        $test = Storage::disk('uploads')->put($id, $request->file('fileToUpload'));
+
+
+
+        var_dump($test);
+
+
+        // Article::where('content', $request->get('content'))->update(['img_path' => $test]);
+
+
     }
 
     /**
@@ -99,20 +116,20 @@ class ArticleController extends Controller
     {
         $this->validate($request,
             [
-                'title'=>'required',
-                'content'=>'required'
+                'title' => 'required',
+                'content' => 'required'
             ],
             [
-                'title.required'=>'Un titre est requis',
-                'content.required'=>'Un contenu est requis'
+                'title.required' => 'Un titre est requis',
+                'content.required' => 'Un contenu est requis'
             ]);
 
         $article = Article::where('id', $id)->update([
-            "title"=>$request->title,
-            "content"=>$request->get("content")
+            "title" => $request->title,
+            "content" => $request->get("content")
         ]);
 
-        if(!$article){
+        if (!$article) {
             return redirect()->route('articles.index');
         }
 

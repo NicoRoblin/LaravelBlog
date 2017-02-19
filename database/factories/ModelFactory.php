@@ -30,9 +30,7 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->title,
         'content' => $faker->paragraph,
-        'user_id' => function (){
-            return factory(App\User::class)->create()->id;
-        },
+        'user_id' => rand(1, 30),
     ];
 });
 
@@ -40,11 +38,26 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
 
     return [
         'content' => $faker->paragraph,
-        'article_id' => function (){
-            return factory(App\Article::class)->create()->id;
-        },
-        'user_id' => function (){
-            return factory(App\User::class)->create()->id;
-        },
+        'article_id' => rand(1,30),
+        'user_id' => rand(1,30),
     ];
 });
+
+$factory->define(App\Like::class, function (Faker\Generator $faker) {
+
+    return [
+        'article_id' => rand(1,30),
+        'user_id' => rand(1,30),
+    ];
+});
+
+$factory->define(App\Message::class, function (Faker\Generator $faker) {
+
+    return [
+        'content' => $faker->paragraph,
+        'article_id' => rand(1,30),
+        'user_id' => rand(1,30),
+        'for_user_id' => rand(1,30),
+    ];
+});
+

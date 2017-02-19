@@ -72,6 +72,41 @@
             @empty
                 <p>Pas de commentaires</p>
             @endforelse
+            @if(count($articles->likes) > 0)
+                <p>{{count($articles->likes)}} like(s)</p>
+            @else
+                <p>Pas de likes</p>
+            @endif
+            @if(Auth::check())
+                <?php $value = false; ?>
+                @forelse(Auth::user()->likes as $like)
+                    @if($like->user_id == Auth::user()->id && $like->article_id == $articles->id)
+                        <p>Vous aimez déjà</p>
+                        <form class="form-horizontal" role="form" method="POST"
+                              action="{{route('likes.destroy', [$articles->id])}}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger">Je n'aime plus</button>
+                        </form>
+                        <?php $value = true; ?>
+
+                    @endif
+                @empty
+                    <form action="{{ route('likes.store', [$articles->id]) }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-primary">J'aime</button>
+                    </form>
+                    <?php $value = true; ?>
+
+                @endforelse
+                @if($value == false)
+                    <form action="{{ route('likes.store', [$articles->id]) }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-primary">J'aime</button>
+                    </form>
+                @endif
+            @endif
+
 
         </div>
 

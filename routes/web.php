@@ -33,4 +33,10 @@ Route::resource('comments', 'CommentController',  ['except' => ['store']]);
 
 Route::post('/store/{id}', 'CommentController@store')->name('comments.store');
 
+Route::resource('likes', 'LikeController',  ['except' => ['store']]);
+
+Route::post('/store/{id}', 'LikeController@store')->name('likes.store');
+
+Route::resource('messages', 'MessageController');
+
 Route::get('/profile', 'ProfileController@index')->name('profile');

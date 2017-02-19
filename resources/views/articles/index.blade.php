@@ -12,6 +12,7 @@
         @foreach($articles as $article)
             <h1><a style="color: inherit;" href="{{route('articles.show', [$article->id])}}">{{$article->title}}</a>
             </h1>
+                <img src="../../..{{$article->img_path}}" alt="" style="height:  50px;width: auto;">
 
             <p>{{$article->content}}</p>
             <ul style="padding: 0; list-style: none">
@@ -29,6 +30,12 @@
                 @else
                     <p>Pas de commentaires</p>
                 @endif
+
+                    @if(count($article->likes) > 0)
+                        <p>{{count($article->likes)}} like(s)</p>
+                    @else
+                        <p>Pas de likes</p>
+                    @endif
 
             </div>
         @endforeach

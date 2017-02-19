@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 style="text-align: center; margin-bottom: 5vh;">Création d'un article</h1>
-    <form class="form-horizontal" role="form" method="POST" action="{{ route('articles.store') }}">
+    <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="{{ route('articles.store') }}">
         {{ csrf_field() }}
         @include('messages.errors')
         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
@@ -28,6 +28,9 @@
                         </span>
                 @endif
             </div>
+        </div>
+        <div class="form-group" style="width: 31%; margin: 0 auto;">
+            <input type="file" name="fileToUpload" id="fileToUpload">
         </div>
         <div class="form-group">
             <div class="col-md-2 col-md-offset-8">

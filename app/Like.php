@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Like extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,18 +12,14 @@ class Article extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'content', 'user_id', 'img_path'
+        'article_id', 'user_id',
     ];
 
     public function user(){
         return $this->belongsTo('App\User');
     }
 
-    public function comments(){
-        return $this->hasMany('App\Comment');
-    }
-
-    public function likes() {
-        return $this->hasMany('App\Like');
+    public function article(){
+        return $this->belongsTo('App\Article');
     }
 }

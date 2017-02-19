@@ -50,7 +50,7 @@ class CommentController extends Controller
             "article_id" => $id,
             "user_id" => Auth::user()->id,
         ]);
-        
+
 
         return redirect()->route('articles.show', compact('id'));
     }
