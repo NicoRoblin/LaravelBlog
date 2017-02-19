@@ -15,13 +15,13 @@
             </li>
         </ul>
         @if(Auth::check() && (Auth::user()->id == $articles->user_id || Auth::user()->is_admin == true))
-            <form class="form-horizontal" role="form" method="POST"
+            <form class="form-horizontal" style="display: inline-block; padding: 0; margin: 0;" role="form" method="POST"
                   action="{{route('articles.destroy', [$articles->id])}}">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="btn btn-danger">DELETE</button>
+                <button type="submit" class="btn btn-danger" style="display: inline-block;">DELETE</button>
             </form>
-            <a class="btn btn-default" href="{{route('articles.edit', [$articles->id])}}">Modifier</a>
+            <a class="btn btn-default" style="display: inline-block;" href="{{route('articles.edit', [$articles->id])}}">Modifier</a>
             <hr>
         @endif
             <form class="form-horizontal" role="form" method="POST"
@@ -61,13 +61,13 @@
                     </li>
                 </ul>
                 @if(Auth::check() && (Auth::user()->id == $articles->user_id || Auth::user()->is_admin == true))
-                    <form class="form-horizontal" role="form" method="POST"
+                    <form class="form-horizontal" style="display: inline-block; padding: 0; margin: 0;" role="form" method="POST"
                           action="{{route('comments.destroy', [$comment->id])}}">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-danger">DELETE</button>
+                        <button type="submit" class="btn btn-danger" style="display: inline-block">DELETE</button>
                     </form>
-                    <a class="btn btn-default" href="{{route('comments.edit', [$comment->id])}}">Modifier</a>
+                    <a class="btn btn-default" style="display:inline-block;" href="{{route('comments.edit', [$comment->id])}}">Modifier</a>
                 @endif
                 <hr>
             @empty
