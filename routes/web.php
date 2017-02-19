@@ -31,7 +31,7 @@ Route::resource('articles', 'ArticleController');
 
 Route::resource('comments', 'CommentController',  ['except' => ['store']]);
 
-Route::post('/store/{id}', 'CommentController@store')->name('comments.store');
+Route::post('/add/{id}', 'CommentController@add')->name('comments.add');
 
 Route::resource('likes', 'LikeController',  ['except' => ['store']]);
 

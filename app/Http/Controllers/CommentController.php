@@ -35,7 +35,7 @@ class CommentController extends Controller
      * @param int $article_id
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function add(Request $request, $id)
     {
         $this->validate($request,
             [

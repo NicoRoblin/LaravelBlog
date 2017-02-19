@@ -24,7 +24,7 @@
             <a class="btn btn-default" href="{{route('articles.edit', [$articles->id])}}">Modifier</a>
             <hr>
             <form class="form-horizontal" role="form" method="POST"
-                  action="{{ route('comments.store', [$articles->id]) }}">
+                  action="{{ route('comments.add', [$articles->id]) }}">
                 {{ csrf_field() }}
                 @include('messages.errors')
                 <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
@@ -109,6 +109,34 @@
 
 
         </div>
+        @include('components.share', ['url' => request()->fullUrl(),])
+
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        <script>
+
+            var popupSize = {
+                width: 500,
+                height: 350
+            };
+
+            $(document).on('click', '.social-buttons > a', function (e) {
+
+                var
+                        verticalPos = Math.floor(($(window).width() - popupSize.width) / 2),
+                        horisontalPos = Math.floor(($(window).height() - popupSize.height) / 2);
+
+                var popup = window.open($(this).prop('href'), 'social',
+                        'width=' + popupSize.width + ',height=' + popupSize.height +
+                        ',left=' + verticalPos + ',top=' + horisontalPos +
+                        ',location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1');
+
+                if (popup) {
+                    popup.focus();
+                    e.preventDefault();
+                }
+
+            });
+        </script>
 
     </div>
 @endsection
