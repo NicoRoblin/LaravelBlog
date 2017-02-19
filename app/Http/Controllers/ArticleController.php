@@ -76,7 +76,7 @@ class ArticleController extends Controller
 
         // Article::where('content', $request->get('content'))->update(['img_path' => $test]);
 
-        return redirect(route('articles.show', compact('id')));
+        return redirect(route('articles.index'));
 
 
     }
