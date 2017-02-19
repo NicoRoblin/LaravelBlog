@@ -61,7 +61,7 @@ class ArticleController extends Controller
             "user_id" => Auth::user()->id
         ]);
 
-        //$id = '' . $article->id . '';
+        $id = $article->id;
 
         //$ext = $request->file('fileToUpload')->extension();
 
@@ -75,6 +75,8 @@ class ArticleController extends Controller
 
 
         // Article::where('content', $request->get('content'))->update(['img_path' => $test]);
+
+        return redirect(route('articles.show', compact('id')));
 
 
     }
