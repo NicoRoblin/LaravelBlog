@@ -29,6 +29,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('articles', 'ArticleController');
 
+Route::resource('contact', 'ContactController');
+
 Route::resource('comments', 'CommentController',  ['except' => ['store']]);
 
 Route::post('/add/{id}', 'CommentController@add')->name('comments.add');
