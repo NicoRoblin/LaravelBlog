@@ -24,7 +24,7 @@
                 </li>
             </ul>
             <hr>
-            <div style="width: 100% ;font-size: 0.8em; padding-left: 5%;">
+            <div style="width: 100% ;font-size: 0.8em; padding-left: 5%; background-color: white;">
                 @if(count($article->comments) > 0)
                     <a href="{{route('articles.show', [$article->id])}}">{{count($article->comments)}} commentaire(s)</a>
                 @else
@@ -38,6 +38,7 @@
                     @endif
 
             </div>
+                <hr>
         @endforeach
         {{$articles->links()}}
     </div>
